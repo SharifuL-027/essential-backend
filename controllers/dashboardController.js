@@ -1,5 +1,5 @@
 const Order = require('../models/order'); 
-const Product = require('../models/Product');
+const Product = require('../models/product')
 
 // @desc    Get Admin Dashboard Statistics
 // @route   GET /api/v1/dashboard/stats
