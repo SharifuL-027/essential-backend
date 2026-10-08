@@ -1,5 +1,5 @@
-const Product = require('../models/product');
-const Category = require('../models/category'); // ক্যাটাগরি মডেল ইম্পোর্ট করা হলো
+const Product = require('../models/Product');
+const Category = require('../models/category'); 
 
 // @access  Private/Admin
 const createProduct = async (req, res) => {
