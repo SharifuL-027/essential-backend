@@ -7,7 +7,8 @@ const {
     getOrders, 
     getOrderById, 
     updateOrderToDelivered, 
-    updateOrderStatus 
+    updateOrderStatus,
+    deleteOrder 
 } = require('../controllers/orderController');
 
 const { protect, adminOnly } = require('../middleware/authMiddleware');
@@ -35,5 +36,7 @@ router.put('/:id/deliver', protect, adminOnly, updateOrderToDelivered);
 // 🔥 Route: PUT /api/v1/orders/:id/status (নতুন ৩টি স্টেপের স্ট্যাটাস আপডেটের জন্য)
 // Access: Private/Admin
 router.put('/:id/status', protect, adminOnly, updateOrderStatus);
+
+router.delete('/:id', protect, adminOnly, deleteOrder);
 
 module.exports = router;

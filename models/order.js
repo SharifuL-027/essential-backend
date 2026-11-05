@@ -4,7 +4,7 @@ const orderSchema = new mongoose.Schema(
     {
         user: {
             type: mongoose.Schema.Types.ObjectId,
-            required: false, // Eita false kore dilam jate login chhara order nite pare
+            required: false, 
             ref: 'User',
         },
         orderItems: [
@@ -50,7 +50,7 @@ const orderSchema = new mongoose.Schema(
         // 🔥 নতুন Status ফিল্ডটি এখানে অ্যাড করা হলো
         status: {
             type: String,
-            enum: ['Pending', 'Processing', 'Shipped', 'Delivered'],
+            enum: ['Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled'],
             default: 'Pending',
         },
     },

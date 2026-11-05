@@ -102,5 +102,42 @@ const updateOrderToDelivered = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+// 🔥 Notun function: Status update korar jonno (Pending, Processing, Shipped, Delivered)
+const updateOrderStatus = async (req, res) => {
+    try {
+        const order = await Order.findById(req.params.id);
 
-module.exports = { addOrderItems, getMyOrders, getOrders, getOrderById, updateOrderToDelivered };
+        if (order) {
+            // Frontend theke asa status ta set korlam
+            order.status = req.body.status;
+
+            // Jodi admin 'Delivered' select kore, tahole automatically isDelivered true hoye jabe
+            if (req.body.status === 'Delivered') {
+                order.isDelivered = true;
+            }
+
+            const updatedOrder = await order.save();
+            res.status(200).json(updatedOrder);
+        } else {
+            res.status(404).json({ message: 'Order not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+// 🔥 Order Delete করার ফাংশন
+const deleteOrder = async (req, res) => {
+    try {
+        const order = await Order.findByIdAndDelete(req.params.id);
+        
+        if (order) {
+            res.status(200).json({ message: 'Order deleted successfully' });
+        } else {
+            res.status(404).json({ message: 'Order not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+module.exports = { addOrderItems, getMyOrders, getOrders, getOrderById, updateOrderToDelivered, updateOrderStatus, deleteOrder };
