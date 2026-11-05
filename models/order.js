@@ -47,6 +47,12 @@ const orderSchema = new mongoose.Schema(
             required: true,
             default: false,
         },
+        // 🔥 নতুন Status ফিল্ডটি এখানে অ্যাড করা হলো
+        status: {
+            type: String,
+            enum: ['Pending', 'Processing', 'Shipped', 'Delivered'],
+            default: 'Pending',
+        },
     },
     { timestamps: true }
 );
